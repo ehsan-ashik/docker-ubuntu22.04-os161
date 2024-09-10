@@ -1,4 +1,4 @@
-# Docker Image for OS161-2.0.3 in Ubuntu 22.04
+# Docker Image for OS161 v.2.0.3 in Ubuntu 22.04
 This repository contains the docker image that installs OS161 v.2.0.3, based on Ubuntu 22.04. OS161 is an educational operating system developed for teaching OS concepts in undergraduate and graduate level OS courses such as CS4300.  
 
 The image includes the following -
@@ -11,6 +11,11 @@ The image includes the following -
 2. Clone the repository into the prefered dorectory.
 3. From the cloned directory, build the `.Dockerfile` with the command: `docker build -t docker-ubuntu22.04-os161 .`
 4. Once the build is complete start the container with the command: `docker run -i -t docker-ubuntu22.04-os161 /bin/bash`
+
+## Getting the Image from DockerHub
+If you do not want to build the image by cloning the repo, you can pull the image directly from DockerHub with the command: `docker pull ehaque052/docker-ubuntu22.04-os161`
+
+Once the image is succesfully pulled, you can run the image with the command: `docker run -i -t ehaque052/docker-ubuntu22.04-os161 /bin/bash`
 
 ## Building and Running OS161
 As part of the Docker build process, the script `build-kernel.sh` is copied to the os161 working directory (`root/cs4300`) in the container. To build and run the `DUMBVM` kernel, execute the following command from the woring directory: `chmod +x ./build-kernel.sh && ./build-kernel.sh`
