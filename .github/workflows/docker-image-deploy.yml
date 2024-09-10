@@ -1,0 +1,19 @@
+name: Docker Image Deploy to DockerHub
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: build the image
+      run: |
+        docker build -t ehaque052/docker-ubuntu22.04-os161:latest .
+    - name: push to docker hub
+      run: |
+        docker login -u ehaque052 -p ${{ secrets.DOCKER_PAT }}
+        docker push ehaque052/docker-ubuntu22.04-os161:latest
+        
