@@ -17,6 +17,13 @@ If you do not want to build the image by cloning the repo, you can pull the imag
 
 Once the image is succesfully pulled, you can run the image with the command: `docker run -i -t ehaque052/docker-ubuntu22.04-os161 /bin/bash`
 
+## Setting Up a Local Working Directory
+To work on the assignments, creating a local working directory can be helpful, especially to make changes in the kernel and to open the OS161 codebase to a code editor or IDE. To create a local working directory **Docker Volume** can be used with the steps mentioned below - 
+1. Pull the image from DockerHub or build the image from this repository as mentioned above.
+2. Create a working directory in your local machine and `cd` into the working directory.
+3. Create a temp container from the image and run the following command to copy the src files from the container into the local directory: `docker cp <COINTAINER_ID>:/root/cs4300 $(pwd)/cs4300` (Note that, in windows machine `$(pwd)` will not work and `%cd%` should be used. The temp container can be removed after this step).
+4. Once the src files are copied into the working directory, go the the `cs4300` directory on your local machine and execute the command: `docker run -it --volume $(pwd):/root/cs4300 ehaque052/docker-ubuntu22.04-os161 /bin/bash` (This will mount the local `cs4300` directory to the container's working directory).
+
 ## Building and Running OS161
 As part of the Docker build process, the script `build-kernel.sh` is copied to the os161 working directory (`root/cs4300`) in the container. To build and run the `DUMBVM` kernel, execute the following command from the woring directory: `chmod +x ./build-kernel.sh && ./build-kernel.sh`
 
